@@ -4,13 +4,18 @@ import java.util.List;
 
 public class ReservationDetails {
 
-
+	private int rid;
 	private String hotel_name;
 	private String checkin;
 	private String checkout;
 	private List<Guest> guest_list;
-	
-	
+
+	public int getRid() {
+		return rid;
+	}
+	public void setRid(int rid) {
+		this.rid = rid;
+	}
 	public String getHotel_name() {
 		return hotel_name;
 	}

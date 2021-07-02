@@ -3,17 +3,17 @@ package com.wli.springassement.entities;
 public class HotelDetail {
 
 
-	private int id;
+	private int hid;
 	private String hotel_name;
 	private int price;
 	private boolean availability;
 
-	public int getId() {
-		return id;
+	public int getHid() {
+		return hid;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setHid(int hid) {
+		this.hid = hid;
 	}
 
 	public String getHotel_name() {

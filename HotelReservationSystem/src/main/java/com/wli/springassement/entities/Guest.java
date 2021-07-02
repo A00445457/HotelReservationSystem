@@ -2,18 +2,18 @@ package com.wli.springassement.entities;
 
 public class Guest {
 
-	private int id;
+	private int gid;
 	private String firstName;
 	private String lastName;
 	private int age;
 	private String gender;
 
-	public int getId() {
-		return id;
+	public int getGid() {
+		return gid;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setGid(int gid) {
+		this.gid = gid;
 	}
 
 	public String getFirstName() {

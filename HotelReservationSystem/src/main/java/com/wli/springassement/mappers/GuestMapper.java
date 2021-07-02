@@ -11,4 +11,7 @@ public interface GuestMapper {
 
     @Select("SELECT * FROM TBL_GUEST ")
     List<Guest> findAll();
+
+    @Select("SELECT g.* FROM TBL_GUEST g inner join TBL_RESERVATIONGUEST rg on g.gid=rg.gid where rg.rid=#{rid}")
+    List<Guest> findGuestByReservationId(int rid);
 }
