@@ -1,9 +1,7 @@
 package com.wli.springassement.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import com.wli.springassement.entities.Gender;
 import com.wli.springassement.entities.Guest;
 import com.wli.springassement.services.GuestService;
 import com.wli.springassement.services.HotelService;
@@ -16,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.wli.springassement.entities.HotelDetail;
 import com.wli.springassement.entities.ReservationDetails;
-import com.wli.datarepository.TempDataRepository;
 
 @RestController
 public class HotelController {
