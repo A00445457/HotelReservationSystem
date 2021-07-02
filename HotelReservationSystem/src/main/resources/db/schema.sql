@@ -5,7 +5,7 @@ CREATE TABLE TBL_GUEST (
                                firstName VARCHAR(250) NOT NULL,
                                lastName VARCHAR(250) NOT NULL,
                                age INT,
-                               gender INT DEFAULT 3
+                               gender VARCHAR(50)
 );
 
 DROP TABLE IF EXISTS TBL_HOTELDETAIL;

@@ -2,11 +2,20 @@ package com.wli.springassement.entities;
 
 public class Guest {
 
-	
+	private int id;
 	private String firstName;
 	private String lastName;
 	private int age;
-	private Gender gender;
+	private String gender;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public String getFirstName() {
 		return firstName;
 	}
@@ -25,10 +34,10 @@ public class Guest {
 	public void setAge(int age) {
 		this.age = age;
 	}
-	public Gender getGender() {
+	public String getGender() {
 		return gender;
 	}
-	public void setGender(Gender gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
 	

@@ -3,6 +3,10 @@ package com.wli.springassement.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.wli.springassement.entities.Gender;
+import com.wli.springassement.entities.Guest;
+import com.wli.springassement.services.GuestService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,10 +19,17 @@ import com.wli.datarepository.TempDataRepository;
 @RestController
 public class HotelController {
 	
+	@Autowired
+	GuestService guestService;
 
 	@RequestMapping("/hotellist")
 	public List<HotelDetail> hotelList() {
 		return TempDataRepository.getTempHotelList();
+	}
+
+	@RequestMapping("/guestslist")
+	public List<Guest> guestsList(){
+		return guestService.getAllGuests();
 	}
 	
 	@RequestMapping(value="/reservation", 
