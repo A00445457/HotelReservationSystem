@@ -14,5 +14,5 @@ CREATE TABLE TBL_HOTELDETAIL (
                            id INT AUTO_INCREMENT  PRIMARY KEY,
                            hotel_name VARCHAR(250) NOT NULL,
                            price INT,
-                           availability BOOL DEFAULT false
+                           availability BOOLEAN DEFAULT false
 );

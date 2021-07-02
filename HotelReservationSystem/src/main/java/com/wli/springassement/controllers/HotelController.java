@@ -6,6 +6,7 @@ import java.util.List;
 import com.wli.springassement.entities.Gender;
 import com.wli.springassement.entities.Guest;
 import com.wli.springassement.services.GuestService;
+import com.wli.springassement.services.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,10 +22,12 @@ public class HotelController {
 	
 	@Autowired
 	GuestService guestService;
+	@Autowired
+	HotelService hotelService;
 
 	@RequestMapping("/hotellist")
 	public List<HotelDetail> hotelList() {
-		return TempDataRepository.getTempHotelList();
+		return hotelService.getAllHotels();
 	}
 
 	@RequestMapping("/guestslist")
