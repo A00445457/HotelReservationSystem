@@ -34,6 +34,7 @@ public class HotelController {
 	 */
 	@RequestMapping("/hotellist")
 	public List<HotelDetail> hotelList() {
+		//call service and get hotel list
 		return hotelService.getAllHotels();
 	}
 
@@ -43,6 +44,7 @@ public class HotelController {
 	 */
 	@RequestMapping("/guestslist")
 	public List<Guest> guestsList(){
+		//call service and get list list
 		return guestService.getAllGuests();
 	}
 
@@ -52,6 +54,7 @@ public class HotelController {
 	 */
 	@RequestMapping("/reservationlist")
 	public List<ReservationDetails> reservationList(){
+		//call service and get reservation list
 		return reservationService.getAllReservation();
 	}
 
@@ -64,7 +67,9 @@ public class HotelController {
 			method =RequestMethod.POST ,
 			consumes="application/json")
 	public String reserveHotel(@RequestBody ReservationDetails reservationDetails) {
+		//call service and get confirm number
 		String confirm = reservationService.saveReservation(reservationDetails);
+		//format return in json
 		Map map = new HashMap();
 		map.put("confirmation_number", confirm);
 
