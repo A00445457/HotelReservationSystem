@@ -28,21 +28,38 @@ public class HotelController {
 	@Autowired
 	ReservationService reservationService;
 
+	/**
+	 *
+	 * @return json format hotel list
+	 */
 	@RequestMapping("/hotellist")
 	public List<HotelDetail> hotelList() {
 		return hotelService.getAllHotels();
 	}
 
+	/**
+	 *
+	 * @return json format confirm guests list
+	 */
 	@RequestMapping("/guestslist")
 	public List<Guest> guestsList(){
 		return guestService.getAllGuests();
 	}
 
+	/**
+	 *
+	 * @return json format confirm reservation list
+	 */
 	@RequestMapping("/reservationlist")
 	public List<ReservationDetails> reservationList(){
 		return reservationService.getAllReservation();
 	}
-	
+
+	/**
+	 *
+	 * @param reservationDetails json format parameters, which contains reservation and guest list
+	 * @return json format confirm number
+	 */
 	@RequestMapping(value="/reservation", 
 			method =RequestMethod.POST ,
 			consumes="application/json")
