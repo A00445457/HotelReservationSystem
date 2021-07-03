@@ -7,5 +7,5 @@ import java.util.List;
 public interface ReservationService {
     List<ReservationDetails> getAllReservation();
 
-    String makeReservation(ReservationDetails reservationDetails);
+    String saveReservation(ReservationDetails reservationDetails);
 }

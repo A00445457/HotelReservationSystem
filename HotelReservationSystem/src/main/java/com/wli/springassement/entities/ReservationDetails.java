@@ -9,6 +9,15 @@ public class ReservationDetails {
 	private String checkin;
 	private String checkout;
 	private List<Guest> guest_list;
+	String confirm;
+
+	public String getConfirm() {
+		return confirm;
+	}
+
+	public void setConfirm(String confirm) {
+		this.confirm = confirm;
+	}
 
 	public int getRid() {
 		return rid;

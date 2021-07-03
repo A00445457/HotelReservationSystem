@@ -1,7 +1,9 @@
 package com.wli.springassement.mappers;
 
 import com.wli.springassement.entities.Guest;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -14,4 +16,8 @@ public interface GuestMapper {
 
     @Select("SELECT g.* FROM TBL_GUEST g inner join TBL_RESERVATIONGUEST rg on g.gid=rg.gid where rg.rid=#{rid}")
     List<Guest> findGuestByReservationId(int rid);
+
+    @Insert({"INSERT INTO TBL_GUEST (firstName, lastName, age, gender) VALUES (#{firstName}, #{lastName}, #{age}, #{gender})"})
+    @Options(useGeneratedKeys = true, keyProperty = "gid")
+    int insertGuest(Guest guest);
 }

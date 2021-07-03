@@ -44,8 +44,7 @@ public class HotelController {
 			method =RequestMethod.POST ,
 			consumes="application/json")
 	public String reserveHotel(@RequestBody ReservationDetails reservationDetails) {
-		
-		return reservationDetails.getHotel_name();
+		return reservationService.saveReservation(reservationDetails);
 	}
 	
 	
