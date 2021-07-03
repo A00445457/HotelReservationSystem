@@ -1,11 +1,14 @@
 package com.wli.springassement.controllers;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.wli.springassement.entities.Guest;
 import com.wli.springassement.services.GuestService;
 import com.wli.springassement.services.HotelService;
 import com.wli.springassement.services.ReservationService;
+import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,7 +47,12 @@ public class HotelController {
 			method =RequestMethod.POST ,
 			consumes="application/json")
 	public String reserveHotel(@RequestBody ReservationDetails reservationDetails) {
-		return reservationService.saveReservation(reservationDetails);
+		String confirm = reservationService.saveReservation(reservationDetails);
+		Map map = new HashMap();
+		map.put("confirmation_number", confirm);
+
+		String result = JSONObject.toJSONString(map);
+		return result;
 	}
 	
 	
