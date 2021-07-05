@@ -11,4 +11,7 @@ public interface HotelMapper {
 
     @Select("SELECT * FROM TBL_HOTELDETAIL")
     List<HotelDetail> findAll();
+
+    @Select("SELECT * FROM TBL_HOTELDETAIL WHERE AVAILABILITY=TRUE")
+    List<HotelDetail> findAllAvailable();
 }

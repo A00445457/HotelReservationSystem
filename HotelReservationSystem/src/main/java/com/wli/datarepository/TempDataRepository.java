@@ -5,6 +5,10 @@ import java.util.List;
 
 import com.wli.springassement.entities.HotelDetail;
 
+/**
+ * Mock data at the first stage of development
+ * Now totally abandoned
+ */
 public class TempDataRepository {
 
 //	private static List<HotelDetail> tempHotelList = new ArrayList<HotelDetail>(){{

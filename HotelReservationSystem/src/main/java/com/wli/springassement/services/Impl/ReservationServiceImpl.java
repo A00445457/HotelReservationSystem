@@ -30,7 +30,7 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     /**
-     * query reservation relevatnt to guest
+     * query reservation relevant to guest
      * @param firstName firstname
      * @param lastName lastName
      * @return List<ReservationDetails>

@@ -41,6 +41,16 @@ public class HotelController {
 	}
 
 	/**
+	 * get hotel list which includes all available
+	 * @return available hotel list
+	 */
+	@RequestMapping("/availablehotel")
+	public List<HotelDetail> availableHotelList(){
+		//call service and return available hotel list
+		return hotelService.getAvailableHotels();
+	}
+
+	/**
 	 *
 	 * @return json format confirm guests list
 	 */

@@ -17,4 +17,9 @@ public class HotelServiceImpl implements HotelService {
     public List<HotelDetail> getAllHotels(){
         return hotelMapper.findAll();
     }
+
+    @Override
+    public List<HotelDetail> getAvailableHotels(){
+        return hotelMapper.findAllAvailable();
+    }
 }
