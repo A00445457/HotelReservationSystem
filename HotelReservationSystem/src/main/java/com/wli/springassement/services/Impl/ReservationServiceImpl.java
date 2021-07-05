@@ -22,7 +22,7 @@ public class ReservationServiceImpl implements ReservationService {
     /**
      * call reservationMapper to get all ReservationDetails, which includes a list of reservation details
      * And in each reservationDetails there is a list of guest besides reservation information
-     * @return
+     * @return List<ReservationDetails>
      */
     @Override
     public List<ReservationDetails> getAllReservation(){
@@ -30,11 +30,21 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     /**
+     * query reservation relevatnt to guest
+     * @param firstName firstname
+     * @param lastName lastName
+     * @return List<ReservationDetails>
+     */
+    public List<ReservationDetails> getAllReservationByGuest(String firstName, String lastName){
+        return reservationMapper.findReservationByName(firstName, lastName);
+    }
+
+    /**
      * save reservation information in database
      * 1. reservation information (reservation table and reservation_guest relation table)
      * 2. guest list (guest table)
-     * @param reservationDetails
-     * @return
+     * @param reservationDetails reservation info
+     * @return confirm code
      */
     @Override
     public String saveReservation(ReservationDetails reservationDetails){
@@ -48,9 +58,14 @@ public class ReservationServiceImpl implements ReservationService {
         int rid = reservationDetails.getRid();
         //save reservation_guest table
         for(Guest guest : reservationDetails.getGuest_list()){
+            //First, check if guest info has already in our database
             List<Guest> a = guestMapper.findGuestByName(guest.getFirstName(),guest.getLastName());
             if(a.size()==0){
+                //if no, insert into guest table
                 guestMapper.insertGuest(guest);
+            }else{
+                //if yes, get gid for inserting into relationship
+                guest.setGid(a.get(0).getGid());
             }
             int gid = guest.getGid();
             reservationMapper.insertReservationGuest(rid,gid);
@@ -60,7 +75,7 @@ public class ReservationServiceImpl implements ReservationService {
 
     /**
      * generate a random 6 digit confirm code
-     * @return
+     * @return confirm code
      */
     private String getConfirmCode(){
         StringBuilder str = new StringBuilder();

@@ -1,8 +1,7 @@
 package com.wli.springassement.controllers;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Stream;
 
 import com.wli.springassement.entities.Guest;
 import com.wli.springassement.services.GuestService;
@@ -59,6 +58,22 @@ public class HotelController {
 	public List<ReservationDetails> reservationList(){
 		//call service and get reservation list
 		return reservationService.getAllReservation();
+	}
+
+	/**
+	 *
+	 * @param firstName guest first name
+	 * @param lastName guest last name
+	 * @return relevant reservation list
+	 */
+	@RequestMapping("/reservationlistbyname")
+	public Object getReservationListByGuest(String firstName, String lastName){
+		//check if first name and last name is empty
+		if(firstName==null||firstName.isEmpty()||firstName.trim().isEmpty()||
+				lastName==null||lastName.isEmpty()||lastName.trim().isEmpty())
+			return JSONObject.toJSONString(Collections.singletonMap("error_msg","Please enter not null FirstName and LastName."));
+		//call service and get reservation list
+		return reservationService.getAllReservationByGuest(firstName, lastName);
 	}
 
 	/**
