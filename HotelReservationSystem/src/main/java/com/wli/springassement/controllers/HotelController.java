@@ -8,6 +8,7 @@ import com.wli.springassement.entities.Guest;
 import com.wli.springassement.services.GuestService;
 import com.wli.springassement.services.HotelService;
 import com.wli.springassement.services.ReservationService;
+import com.wli.springassement.utility.Verification;
 import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,6 +28,8 @@ public class HotelController {
 	HotelService hotelService;
 	@Autowired
 	ReservationService reservationService;
+	@Autowired
+	Verification verification;
 
 	/**
 	 *
@@ -67,14 +70,19 @@ public class HotelController {
 			method =RequestMethod.POST ,
 			consumes="application/json")
 	public String reserveHotel(@RequestBody ReservationDetails reservationDetails) {
+		//Verify reservation (including guests info)
+		Map<String,String> error = new HashMap<>();
+		if(!verification.reservationVerification(reservationDetails,error)){
+			return JSONObject.toJSONString(error);
+		}
+
 		//call service and get confirm number
 		String confirm = reservationService.saveReservation(reservationDetails);
 		//format return in json
-		Map map = new HashMap();
+		Map<String,String> map = new HashMap<>();
 		map.put("confirmation_number", confirm);
 
-		String result = JSONObject.toJSONString(map);
-		return result;
+		return JSONObject.toJSONString(map);
 	}
 	
 	
