@@ -20,4 +20,13 @@ public interface GuestMapper {
     @Insert({"INSERT INTO TBL_GUEST (firstName, lastName, age, gender) VALUES (#{firstName}, #{lastName}, #{age}, #{gender})"})
     @Options(useGeneratedKeys = true, keyProperty = "gid")
     int insertGuest(Guest guest);
+
+    @Select({"<script>SELECT * FROM TBL_GUEST g "+
+            "<where>"+
+            "  1=1" +
+            "  <if test='firstName!=null'>and firstName=#{firstName}</if> "+
+            "  <if test='lastName!=null'>and lastName=#{lastName}</if>"+
+            "</where>"+
+            "</script>"})
+    List<Guest> findGuestByName(String firstName, String lastName);
 }

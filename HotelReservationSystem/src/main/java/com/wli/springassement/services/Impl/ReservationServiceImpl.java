@@ -48,7 +48,10 @@ public class ReservationServiceImpl implements ReservationService {
         int rid = reservationDetails.getRid();
         //save reservation_guest table
         for(Guest guest : reservationDetails.getGuest_list()){
-            guestMapper.insertGuest(guest);
+            List<Guest> a = guestMapper.findGuestByName(guest.getFirstName(),guest.getLastName());
+            if(a.size()==0){
+                guestMapper.insertGuest(guest);
+            }
             int gid = guest.getGid();
             reservationMapper.insertReservationGuest(rid,gid);
         }
