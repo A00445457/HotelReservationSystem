@@ -27,11 +27,11 @@ public class Verification {
             return false;
         }
         if(reservation.getCheckin()==null||reservation.getCheckout()==null){
-            error.put("error_msg","Empty check in/out date, please check and try again.");
+            error.put("error_msg","Empty check in(out) date, please check and try again.");
             return false;
         }
         if(reservation.getCheckin().after(reservation.getCheckout())){
-            error.put("error_msg","Invalid check in/out date, please check and try again.");
+            error.put("error_msg","Invalid check in(out) date, please check and try again.");
             return false;
         }
         return true;
