@@ -19,7 +19,7 @@ public class Verification {
      */
     public boolean reservationVerification(ReservationDetails reservation, Map<String,String> error) {
         if(!guestsVerification(reservation.getGuest_list())){
-            error.put("error_msg","Invalid guest information, please check and try again.");
+            error.put("error_msg","Empty guest information, please check and try again.");
             return false;
         }
         if(reservation.getHotel_name().isEmpty()){
