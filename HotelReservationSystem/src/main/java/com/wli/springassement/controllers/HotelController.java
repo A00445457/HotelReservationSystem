@@ -35,9 +35,9 @@ public class HotelController {
 	 * @return json format hotel list
 	 */
 	@RequestMapping("/hotellist")
-	public List<HotelDetail> hotelList() {
+	public Map<String, List<HotelDetail>> hotelList() {
 		//call service and get hotel list
-		return hotelService.getAllHotels();
+		return Collections.singletonMap("hotels_list", hotelService.getAllHotels());
 	}
 
 	/**
@@ -45,9 +45,9 @@ public class HotelController {
 	 * @return available hotel list
 	 */
 	@RequestMapping("/availablehotel")
-	public List<HotelDetail> availableHotelList(){
+	public Map<String, List<HotelDetail>> availableHotelList(){
 		//call service and return available hotel list
-		return hotelService.getAvailableHotels();
+		return Collections.singletonMap("hotels_list", hotelService.getAvailableHotels());
 	}
 
 	/**
@@ -55,9 +55,9 @@ public class HotelController {
 	 * @return json format confirm guests list
 	 */
 	@RequestMapping("/guestslist")
-	public List<Guest> guestsList(){
+	public Map<String, List<Guest>> guestsList(){
 		//call service and get list list
-		return guestService.getAllGuests();
+		return Collections.singletonMap("guests_list", guestService.getAllGuests());
 	}
 
 	/**
@@ -65,9 +65,9 @@ public class HotelController {
 	 * @return json format confirm reservation list
 	 */
 	@RequestMapping("/reservationlist")
-	public List<ReservationDetails> reservationList(){
+	public Map<String,List<ReservationDetails>> reservationList(){
 		//call service and get reservation list
-		return reservationService.getAllReservation();
+		return Collections.singletonMap("reservations_list",reservationService.getAllReservation());
 	}
 
 	/**
@@ -77,13 +77,13 @@ public class HotelController {
 	 * @return relevant reservation list
 	 */
 	@RequestMapping("/reservationlistbyname")
-	public Object getReservationListByGuest(String firstName, String lastName){
+	public Map<String,?> getReservationListByGuest(String firstName, String lastName){
 		//check if first name and last name is empty
 		if(firstName==null||firstName.isEmpty()||firstName.trim().isEmpty()||
 				lastName==null||lastName.isEmpty()||lastName.trim().isEmpty())
-			return JSONObject.toJSONString(Collections.singletonMap("error_msg","Please enter not null FirstName and LastName."));
+			return Collections.singletonMap("error_msg","Please enter not null FirstName and LastName.");
 		//call service and get reservation list
-		return reservationService.getAllReservationByGuest(firstName, lastName);
+		return Collections.singletonMap("reservations_list",reservationService.getAllReservationByGuest(firstName, lastName));
 	}
 
 	/**
@@ -94,20 +94,15 @@ public class HotelController {
 	@RequestMapping(value="/reservation", 
 			method =RequestMethod.POST ,
 			consumes="application/json")
-	public String reserveHotel(@RequestBody ReservationDetails reservationDetails) {
+	public Map<String,?> reserveHotel(@RequestBody ReservationDetails reservationDetails) {
 		//Verify reservation (including guests info)
 		Map<String,String> error = new HashMap<>();
 		if(!verification.reservationVerification(reservationDetails,error)){
-			return JSONObject.toJSONString(error);
+			return error;
 		}
 
 		//call service and get confirm number
-		String confirm = reservationService.saveReservation(reservationDetails);
-		//format return in json
-		Map<String,String> map = new HashMap<>();
-		map.put("confirmation_number", confirm);
-
-		return JSONObject.toJSONString(map);
+		return Collections.singletonMap("confirmation_number", reservationService.saveReservation(reservationDetails));
 	}
 	
 	
