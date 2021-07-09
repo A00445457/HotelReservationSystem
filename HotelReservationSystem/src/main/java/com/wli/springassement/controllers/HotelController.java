@@ -1,14 +1,12 @@
 package com.wli.springassement.controllers;
 
 import java.util.*;
-import java.util.stream.Stream;
 
 import com.wli.springassement.entities.Guest;
 import com.wli.springassement.services.GuestService;
 import com.wli.springassement.services.HotelService;
 import com.wli.springassement.services.ReservationService;
 import com.wli.springassement.utility.Verification;
-import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
